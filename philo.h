@@ -6,7 +6,7 @@
 /*   By: ferre <ferre@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/23 15:06:30 by ferre         #+#    #+#                 */
-/*   Updated: 2024/05/27 16:45:28 by ferre         ########   odam.nl         */
+/*   Updated: 2024/06/20 22:36:18 by ferre         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@
 # define SLEEPING 1
 # define THINKING 2
 # define DEAD 3
-# define FULL 4
+# define FORK 4
 
 typedef struct philo
 {
 	pthread_t		thread_id;
-	pthread_mutex_t	philo_fork;
+	pthread_mutex_t philo_fork;
+	pthread_mutex_t philo_lock;
+	pthread_mutex_t *print_lock;
 	int				philo_dead;
 	int				philo_id;
 	int				state;
@@ -44,5 +46,7 @@ long			ft_atoi(char *str);
 void			change_state(t_philo *philo, int state, long time);
 int				is_dead(t_philo *philo);
 int				check_args(int argc, char **argv);
+int				check_state(t_philo *philo, int state);
+void			print_state(t_philo *philo, int state, long time);
 
 #endif

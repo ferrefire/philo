@@ -1,15 +1,12 @@
 CC=cc
 CFLAGS= -Wall -Wextra -Werror
-SRC= philo.c utils.c
-OBJ=$(SRC:%.c=%.o)
+SRC= philo.c locks.c utils.c
 NAME=philo
 
 $(NAME): $(SRC) philo.h
-	$(CC) $(CFLAGS) -c $(SRC)
-	$(CC) -o $(NAME) $(OBJ)
+	$(CC) $(CFLAGS) -o $(NAME) $(SRC)
 
 clean:
-	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)
